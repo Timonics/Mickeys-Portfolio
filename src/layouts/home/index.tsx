@@ -24,8 +24,6 @@ const HomeLayout: React.FC = () => {
         <div className="w-full flex flex-col gap-[50px] items-center bg-white/95 mt-30 pb-30">
           <SectionWrapper>
             <Projects />
-          </SectionWrapper>
-          <SectionWrapper>
             <Stacks />
           </SectionWrapper>
         </div>

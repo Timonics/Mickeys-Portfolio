@@ -26,13 +26,13 @@ const ProjectCard: React.FC<CardProps> = ({
     <div
       className={`${
         backgroundGradient && backgroundGradient
-      } flex items-center justify-center h-[210px] sm:h-[280px] w-full min-[1000px]:w-1/2 rounded-lg ${
+      } flex items-center justify-center h-[210px] sm:h-[280px] w-full lg:w-1/2 pointer-events-auto lg:pointer-events-none rounded-lg ${
         shadowClassName && shadowClassName
       } ${backgroundColor && backgroundColor} lg:shadow-none`}
       onClick={onClick}
     >
       <div
-        className="pops font-extrabold flex items-center gap-2"
+        className="pops font-extrabold flex flex-wrap text-center items-center justify-center gap-2"
         style={{
           color: textColor,
           fontSize,

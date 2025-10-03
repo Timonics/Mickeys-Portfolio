@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   const projectElement = project.map((proj) => {
     const Icon = proj.icon;
     return (
-      <div className="flex flex-col gap-4">
+      <div key={proj.name} className="flex flex-col gap-4">
         <h1
           style={{ color: proj.textColor }}
           className={`pops text-5xl font-bold text-center`}
@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
           {proj.title}
         </h1>
         <div
-          className={`${proj.backgroundGradient} flex items-center justify-center h-[290px] sm:h-[320px] w-[90vw] md:w-[70vw] lg:w-[60vw] rounded-lg ${proj.shadowClassName} ${proj.backgroundColor} shadow-none mt-4`}
+          className={`${proj.backgroundGradient} mx-auto flex items-center justify-center h-[290px] sm:h-[320px] w-[90vw] md:w-[70vw] lg:w-[60vw] rounded-lg ${proj.shadowClassName} ${proj.backgroundColor} shadow-none mt-4`}
         >
           <div
             className="pops font-extrabold flex items-center gap-2"

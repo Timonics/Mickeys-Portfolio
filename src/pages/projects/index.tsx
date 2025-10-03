@@ -1,33 +1,15 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { PROJECTS } from "../../constants/projects";
 import ProjectTag from "./components/ProjectTags";
 import ProjectCard from "./components/ProjectCard";
 import SectionWrapper from "../../layouts/section-wrapper";
 import { Link } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import WorksModal from "../landing/hero/components/WorkModal";
+import MobileProjectModal from "./components/MobileProjectModal";
 
 const Project: React.FC = () => {
   const [activeTag, setActiveTag] = useState<string>("All");
-  const projectRef = useRef<HTMLDivElement>(null);
-  const [showContent, setShowContent] = useState(false);
   const [showProjectInfo, setShowProjectInfo] = useState<boolean>(false);
-  const [projectRect, setProjectRect] = useState<DOMRect | null>(null);
-
-  const handleOpen = () => {
-    if (projectRef.current) {
-      setProjectRect(projectRef.current.getBoundingClientRect());
-    }
-    setShowProjectInfo(true);
-
-    setTimeout(() => setShowContent(true), 300);
-  };
-
-  const handleClose = () => {
-    setShowContent(false);
-    setTimeout(() => setShowProjectInfo(false), 300);
-  };
-
+  const [selectedProjectName, setSelectedrojectName] = useState<string>("");
   const allTags: string[] = useMemo(() => {
     const tagSet: Set<string> = new Set();
     PROJECTS.forEach((project) => {
@@ -41,67 +23,76 @@ const Project: React.FC = () => {
       ? PROJECTS.filter((project) => project.tags.includes(activeTag))
       : PROJECTS;
 
+  const mobileSelectedProject = PROJECTS.find(
+    (proj) => proj.name === selectedProjectName
+  );
+
   const filteredProjectsElements = filteredProjects
     .sort(() => Math.random() - 0.5)
     .map((project) => {
       const Icon = project.icon!;
       const projectTags = project.tags;
       return (
-        <SectionWrapper key={project.title}>
-          <div
-            key={project.title}
-            className="flex items-center justify-around w-full gap-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg lg:p-6 rounded-xl shadow-2xl"
-            onClick={handleOpen}
-          >
-            <ProjectCard
-              Icon={Icon}
-              projectName={project.title}
-              textColor={project.textColor!}
-              fontSize="30px"
-              backgroundGradient={project.backgroundGradient}
-              backgroundColor={project.backgroundColor}
-              shadowClassName={project.shadowClassName}
-            />
-            <div className="hidden min-[1000px]:flex flex-col gap-2 outfit w-1/2">
-              <h2
-                className={`text-xl pops font-bold bg-clip-text text-transparent bg-gradient-to-r ${project.headerColor}`}
-              >
-                {project.title}
-              </h2>
-              <p className="text-white/80">{project.subtitle}</p>
-              <p className="text-white/50 mt-2">{project.desc}</p>
-              <div className="flex gap-4 items-center mt-2">
-                {project.tags.map((tag, index) => (
-                  <p
-                    key={index}
-                    className="text-sm bg-white/5 rounded-full py-2 px-4"
-                  >
-                    {tag}
-                  </p>
-                ))}
-              </div>
-              <div className="mt-2 flex items-center text-sm font-bold gap-5">
-                {projectTags.includes("Fullstack") && (
-                  <button className="cursor-pointer py-3 px-5 rounded-lg bg-white/20 border-[1.5px] border-white/75 text-white/75">
-                    View Demo
-                  </button>
-                )}
-                <button className="cursor-pointer py-3 px-5 rounded-lg border-[1.5px] border-white/50 text-white/75">
-                  View Repo
-                </button>
-                <Link
-                  onClick={() =>
-                    window.scrollTo({ behavior: "smooth", top: 0 })
-                  }
-                  to={`${project.name}/case-study`}
-                  className="cursor-pointer py-3 px-5 rounded-lg text-black bg-gradient-to-r from-green-400 to-teal-400"
+        <div
+          key={project.title}
+          className="flex items-center justify-around w-full gap-10 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-lg lg:p-6 rounded-xl shadow-2xl"
+        >
+          <ProjectCard
+            Icon={Icon}
+            projectName={project.title}
+            textColor={project.textColor!}
+            fontSize="30px"
+            backgroundGradient={project.backgroundGradient}
+            backgroundColor={project.backgroundColor}
+            shadowClassName={project.shadowClassName}
+            onClick={() => {
+              setSelectedrojectName(project.name);
+              setShowProjectInfo(true);
+            }}
+          />
+          <div className="hidden lg:flex flex-col gap-2 outfit w-1/2">
+            <h2
+              className={`text-xl pops font-bold bg-clip-text text-transparent bg-gradient-to-r ${project.headerColor}`}
+            >
+              {project.title}
+            </h2>
+            <p className="text-white/80">{project.subtitle}</p>
+            <p className="text-white/50 mt-2">{project.desc}</p>
+            <div className="flex gap-4 items-center mt-2">
+              {project.tags.map((tag, index) => (
+                <p
+                  key={index}
+                  className="text-sm bg-white/5 rounded-full py-2 px-4"
                 >
-                  Case Study
-                </Link>
-              </div>
+                  {tag}
+                </p>
+              ))}
+            </div>
+            <div className="mt-2 flex items-center text-sm font-bold gap-5">
+              {projectTags.includes("Fullstack") && (
+                <button
+                  onClick={() => window.open(project.live, "_blank")}
+                  className="cursor-pointer py-3 px-5 rounded-lg bg-white/20 border-[1.5px] border-white/75 text-white/75"
+                >
+                  View Demo
+                </button>
+              )}
+              <button
+                onClick={() => window.open(project.repo, "_blank")}
+                className="cursor-pointer py-3 px-5 rounded-lg border-[1.5px] border-white/50 text-white/75"
+              >
+                View Repo
+              </button>
+              <Link
+                onClick={() => window.scrollTo({ behavior: "smooth", top: 0 })}
+                to={`${project.name}/case-study`}
+                className="cursor-pointer py-3 px-5 rounded-lg text-black bg-gradient-to-r from-green-400 to-teal-400"
+              >
+                Case Study
+              </Link>
             </div>
           </div>
-        </SectionWrapper>
+        </div>
       );
     });
 
@@ -134,7 +125,7 @@ const Project: React.FC = () => {
         </div>
       </header>
       <main className="w-full sm:w-[calc(100%-50px)] md:w-[calc(100%-80px)] py-4 px-2 flex flex-col items-center gap-10 z-30">
-        {filteredProjectsElements}
+        <SectionWrapper>{filteredProjectsElements}</SectionWrapper>
       </main>
       <div className="max-w-6xl mx-auto mb-20 text-center outfit">
         <div className="inline-block bg-white/3 p-6 rounded-2xl">
@@ -164,62 +155,15 @@ const Project: React.FC = () => {
           </div>
         </div>
       </div>
-      <AnimatePresence>
-        {showProjectInfo && projectRect && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={handleClose}
-            />
-
-            <motion.div
-              className="fixed bg-white/10 backdrop-blur-lg text-black rounded-xl shadow-2xl flex items-center justify-center z-50"
-              initial={{
-                width: projectRect.width,
-                height: projectRect.height,
-                borderRadius: 12,
-                top: projectRect.top,
-                left: projectRect.left,
-                x: 0,
-                y: 0,
-              }}
-              animate={{
-                width: "70vw",
-                height: "70vh",
-                borderRadius: 20,
-                top: "50%",
-                left: "50%",
-                x: "-50%",
-                y: "-50%",
-              }}
-              exit={{
-                width: projectRect.width,
-                height: projectRect.height,
-                borderRadius: 12,
-                top: projectRect.top,
-                left: projectRect.left,
-                x: 0,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.5,
-                ease: [0.4, 0, 0.2, 1],
-              }}
-            >
-              <motion.div
-                animate={{ opacity: showContent ? 1 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <WorksModal />
-              </motion.div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {showProjectInfo && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <MobileProjectModal
+            showProjectInfo={showProjectInfo}
+            setShowProjectInfo={setShowProjectInfo}
+            mobileSelectedProject={mobileSelectedProject}
+          />
+        </div>
+      )}
     </>
   );
 };

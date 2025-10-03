@@ -4,7 +4,7 @@ export interface ProjectType {
   name: string;
   title: string;
   subtitle: string;
-  tags: string;
+  tags: string[];
   desc: string;
   icon: IconType;
   textColor: string;
@@ -12,7 +12,21 @@ export interface ProjectType {
   backgroundColor?: string;
   backgroundGradient?: string;
   shadowClassName: string;
-  live: string;
+  live?: string;
   repo: string;
-  featured?: boolean
+  featured?: boolean;
+  caseStudy: {
+    problemStatement: {
+      goal: string;
+      description: string;
+    };
+    researchPlanning: string[];
+    engineering: {
+      backend: string[];
+      frontend: string[];
+      deployment: string[];
+    };
+    designUX: string[];
+    nextSteps: string[];
+  };
 }

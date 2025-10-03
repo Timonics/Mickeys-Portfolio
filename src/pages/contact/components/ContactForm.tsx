@@ -1,5 +1,6 @@
-import { Send } from "lucide-react";
+import { Loader, Send } from "lucide-react";
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,37 @@ const ContactForm: React.FC = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_h9qn2ft",
+        "template_3a5fmlg",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "1wR1sZKrUHHAKPoeu"
+      )
+      .then(
+        (result) => {
+          console.log("Message sent:", result.text);
+          alert("✅ Message sent successfully!");
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setLoading(false);
+        },
+        (error) => {
+          console.error("Error sending:", error.text);
+          alert("❌ Failed to send message. Please try again.");
+          setLoading(false);
+        }
+      );
   };
 
   const handleChange = (
@@ -33,7 +61,7 @@ const ContactForm: React.FC = () => {
         </p>
       </div>
       <div className="mt-10">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 outfit">
             <div className="space-y-2 flex flex-col">
               <label htmlFor="name">Name</label>
@@ -91,11 +119,11 @@ const ContactForm: React.FC = () => {
         </form>
       </div>
       <button
-        type="submit"
+        onClick={handleSubmit}
         className="w-full bg-rose-400 cursor-pointer transition-all duration-300 mt-auto max-lg:mt-10 hover:bg-green-600 text-black flex items-center px-3 py-1.5 rounded-md pops justify-center font-bold"
       >
-        <Send className="w-4 h-4 mr-2" />
-        Send Message
+        {loading ? <Loader className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+        {loading ? "Sending..." : "Send Message"}
       </button>
     </div>
   );

@@ -24,24 +24,30 @@ const Nav: React.FC = () => {
           <Logo />
           <div className="flex items-center gap-4">
             <div className="max-md:hidden flex gap-5 mr-7 outfit items-center">
-              {/* <Link
-              to={"/hire-me"}
-              className="cursor-pointer transition-colors duration-300 hover:text-green-400"
-              onClick={() =>
-                window.scrollTo({
-                  behavior: "smooth",
-                  top: 0,
-                })
+              <NavLink
+                to={"/my-hub"}
+                className={({ isActive }) =>
+                  `cursor-pointer duration-500 transition-all ${
+                    isActive
+                      ? "font-semibold ease-out px-2 py-1 rounded-lg bg-white/10 scale-105 text-green-400"
+                      : "hover:text-green-400"
+                  }`
                 }
-            >
-              Hire-Me
-            </Link> */}
+                onClick={() =>
+                  window.scrollTo({
+                    behavior: "smooth",
+                    top: 0,
+                  })
+                }
+              >
+                Visit-My-Hub
+              </NavLink>
               <NavLink
                 to={"/about-me"}
                 className={({ isActive }) =>
                   `cursor-pointer duration-500 transition-all ${
                     isActive
-                      ? "text-black font-bold hover:text-black ease-out px-2 py-1 rounded-lg bg-gradient-to-br from-rose-400 to-rose-200"
+                      ? "font-semibold ease-out px-2 py-1 rounded-lg bg-white/10 scale-105 text-green-400"
                       : "hover:text-green-400"
                   }`
                 }
@@ -59,7 +65,7 @@ const Nav: React.FC = () => {
                 className={({ isActive }) =>
                   `cursor-pointer duration-500 transition-all ${
                     isActive
-                      ? "text-black font-bold hover:text-black ease-out px-2 py-1 rounded-lg bg-gradient-to-br from-rose-400 to-rose-200"
+                      ? "font-semibold ease-out px-2 py-1 rounded-lg bg-white/10 text-green-400"
                       : "hover:text-green-400"
                   }`
                 }
