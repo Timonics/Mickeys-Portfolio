@@ -92,13 +92,27 @@ const Hero: React.FC = () => {
             frontend design, I enjoy bringing ideas to life and making the web a
             better place—one project at a time!
           </p>
-          <button
-            ref={buttonRef}
-            onClick={handleOpen}
-            className="main_btn pops bg-white text-black shadow-lg shadow-rose-400/40 mt-2 w-fit"
-          >
-            View My Works
-          </button>
+          <div className="flex gap-4 mt-4 flex-wrap items-center">
+            <button
+              ref={buttonRef}
+              onClick={handleOpen}
+              className="main_btn pops bg-white text-black shadow-lg shadow-rose-400/40 mt-2 w-fit"
+            >
+              View My Works
+            </button>
+            <button
+              style={{
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                paddingLeft: "18px",
+                paddingRight: "18px",
+                fontWeight: 700,
+              }}
+              className="rounded-full hover:font-bold border-2 border-white/40 text-white outfit hover:bg-white hover:shadow-lg shadow-green-400/40 hover:text-black"
+            >
+              View My Resume
+            </button>
+          </div>
           <AnimatePresence>
             {open && buttonRect && (
               <>
