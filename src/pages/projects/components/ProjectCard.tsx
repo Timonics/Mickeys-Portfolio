@@ -26,7 +26,7 @@ const ProjectCard: React.FC<CardProps> = ({
     <div
       className={`${
         backgroundGradient && backgroundGradient
-      } flex items-center justify-center h-[210px] sm:h-[280px] w-full lg:w-1/2 pointer-events-auto lg:pointer-events-none rounded-lg ${
+      } flex items-center justify-center h-[210px] sm:h-[280px] w-full lg:w-1/2 pointer-events-auto lg:pointer-events-none rounded-lg px-4 ${
         shadowClassName && shadowClassName
       } ${backgroundColor && backgroundColor} lg:shadow-none`}
       onClick={onClick}
@@ -38,7 +38,7 @@ const ProjectCard: React.FC<CardProps> = ({
           fontSize,
         }}
       >
-        {Icon && <Icon className="p-2 bg-black rounded-xl" size={40} />}{" "}
+        {Icon && <Icon className="p-2 bg-black rounded-xl" size={35} />}{" "}
         {projectName}
       </div>
     </div>

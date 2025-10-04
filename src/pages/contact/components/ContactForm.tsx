@@ -11,6 +11,8 @@ const ContactForm: React.FC = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [error, setError] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,16 +33,22 @@ const ContactForm: React.FC = () => {
       .then(
         (result) => {
           console.log("Message sent:", result.text);
-          alert("✅ Message sent successfully!");
+          setEmailSent(true);
           setFormData({ name: "", email: "", subject: "", message: "" });
           setLoading(false);
         },
         (error) => {
           console.error("Error sending:", error.text);
-          alert("❌ Failed to send message. Please try again.");
+          setError(true);
           setLoading(false);
         }
-      );
+      )
+      .finally(() => {
+        setTimeout(() => {
+          setEmailSent(false);
+          setError(false);
+        }, 3000);
+      });
   };
 
   const handleChange = (
@@ -54,6 +62,17 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="bg-white/5 rounded-lg p-4 flex flex-col">
+      {emailSent && (
+        <div className="bg-green-600/20 border border-green-600 backdrop-blur-2xl text-green-400 p-3 rounded-md mb-4 outfit fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50">
+          <strong>Success!</strong> Your message has been sent. I'll get back to
+          you soon.
+        </div>
+      )}
+      {error && (
+        <div className="bg-red-600/20 border border-red-600 backdrop-blur-2xl text-red-400 p-3 rounded-md mb-4 outfit fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-lg z-50">
+          <strong>Error!</strong> Something went wrong. Please try again later.
+        </div>
+      )}
       <div>
         <h2 className="text-2xl monte font-bold">Send Me a Message</h2>
         <p className="outfit text-white/50">
@@ -120,9 +139,20 @@ const ContactForm: React.FC = () => {
       </div>
       <button
         onClick={handleSubmit}
-        className="w-full bg-rose-400 cursor-pointer transition-all duration-300 mt-auto max-lg:mt-10 hover:bg-green-600 text-black flex items-center px-3 py-1.5 rounded-md pops justify-center font-bold"
+        disabled={
+          loading ||
+          formData.message.trim() === "" ||
+          formData.email.trim() === "" ||
+          formData.name.trim() === "" ||
+          formData.subject.trim() === ""
+        }
+        className={`w-full disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:bg-rose-400 bg-rose-400 cursor-pointer transition-all duration-300 mt-auto max-lg:mt-10 hover:bg-green-600 text-black flex items-center px-3 py-1.5 rounded-md pops justify-center font-bold`}
       >
-        {loading ? <Loader className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
+        {loading ? (
+          <Loader className="w-4 h-4 mr-2 animate-spin" />
+        ) : (
+          <Send className="w-4 h-4 mr-2" />
+        )}
         {loading ? "Sending..." : "Send Message"}
       </button>
     </div>

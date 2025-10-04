@@ -6,7 +6,7 @@ import CTA from "./components/CTA";
 
 const MyHub: React.FC = () => {
   return (
-    <main className="w-full flex flex-col items-center">
+    <main className="w-full flex flex-col items-center max-w-3xl">
       <Hero />
       <CurrentlyBrewing />
       <Projects />

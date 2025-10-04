@@ -30,6 +30,7 @@ const CaseStudy: React.FC = () => {
   return (
     <main className="pt-10 w-full flex flex-col items-center">
       <Hero />
+      <CTA live={selected_project.live} repo={selected_project.repo} />
       <ProblemStatement {...caseStudy.problemStatement} />
       <Research researchPlanning={caseStudy.researchPlanning} />
       <Implementation implementation={caseStudy.engineering} />

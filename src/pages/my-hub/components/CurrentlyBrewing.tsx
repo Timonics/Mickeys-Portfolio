@@ -1,14 +1,13 @@
 import { Coffee } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CurrentlyBrewing: React.FC = () => {
   return (
-    <section className="space-y-4 pt-10">
+    <section className="space-y-4 pt-10 w-full">
       <p className="font-bold fira p-1 px-3 w-fit bg-red-500/15 rounded-full text-green-500/80 text-xs sm:text-lg z-10">
         Currently Brewing
       </p>
-      <div className="bg-gradient-to-r from-purple-800/50 via-purple-600/50 to-pink-600/50 rounded-3xl p-12 mb-20">
+      <div className="bg-gradient-to-r from-purple-800/50 via-purple-600/50 to-pink-600/50 rounded-3xl py-12 px-4 mb-20">
         <div className="text-center space-y-4">
           <Coffee className="w-16 h-16 text-green-500 mx-auto" />
           <h2 className="text-3xl font-bold pops">LumaMind</h2>
@@ -42,19 +41,19 @@ const CurrentlyBrewing: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center mt-10 gap-5">
-            <Link
-              to={""}
+          <div className="flex flex-wrap items-center justify-center mt-10 gap-5">
+            <button
+              onClick={() => window.open("https://github.com/Timonics/LumaMind", "_blank")}
               className="main_btn outfit text-sm lg:text-base bg-white/80 text-black shadow-lg shadow-green-400/40 transition duration-300 hover:scale-105 ease-in-out"
             >
               View Repo
-            </Link>
-            <Link
-              to={""}
+            </button>
+            <button
+              onClick={() => window.open("", "_blank")}
               className="main_btn outfit text-sm lg:text-base bg-white/80 text-black shadow-lg shadow-rose-400/40 transition duration-300 hover:scale-105 ease-in-out"
             >
               Read More
-            </Link>
+            </button>
           </div>
         </div>
       </div>

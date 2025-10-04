@@ -97,10 +97,10 @@ const MobileProjectModal: React.FC<Props> = ({
                     } text-2xl font-bold`}
                     style={{
                       color: mobileSelectedProject.textColor,
-                      fontSize: "30px",
+                      fontSize: "25px",
                     }}
                   >
-                    <Icon className="p-2 bg-black rounded-xl" size={40} />
+                    <Icon className="p-2 bg-black rounded-xl" size={35} />
                     <h2>{mobileSelectedProject.title}</h2>
                   </div>
                 )}

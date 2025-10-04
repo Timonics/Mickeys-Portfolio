@@ -42,7 +42,7 @@ const Project: React.FC = () => {
             Icon={Icon}
             projectName={project.title}
             textColor={project.textColor!}
-            fontSize="30px"
+            fontSize="25px"
             backgroundGradient={project.backgroundGradient}
             backgroundColor={project.backgroundColor}
             shadowClassName={project.shadowClassName}
@@ -100,7 +100,7 @@ const Project: React.FC = () => {
   return (
     <>
       <header className="w-full space-y-5">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <h1 className="text-5xl md:text-7xl text-black bg-white font-bold p-4 pt-3 px-2 pops w-fit">
             My
           </h1>{" "}
@@ -137,7 +137,7 @@ const Project: React.FC = () => {
           <p className="text-sm text-gray-300 mt-1">
             Let's build something together
           </p>
-          <div className="mt-4 flex justify-center gap-3">
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
             <Link
               to={"/contact-me"}
               onClick={() =>

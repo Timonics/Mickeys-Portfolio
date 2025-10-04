@@ -2,11 +2,8 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <div className="text-start space-y-8 mb-20">
-      {/* <h1 className="bg-clip-text text-transparent bg-gradient-to-br fira from-fuchsia-900 via-fuchsia-500/80 to-rose-700 text-5xl font-bold pb-2">
-        Mickey's Hub
-      </h1> */}
-      <div className="flex items-center gap-4">
+    <div className="text-start space-y-8 mb-20 flex flex-col w-full">
+      <div className="flex flex-wrap items-center gap-4">
         <h1 className="text-5xl md:text-7xl text-black bg-white font-bold p-4 pt-3 px-2 pops w-fit">
           Mickey's
         </h1>{" "}

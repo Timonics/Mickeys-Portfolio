@@ -7,7 +7,7 @@ type Props = {
 
 const ProblemStatement: React.FC<Props> = ({ goal, description }) => {
   return (
-    <section className="space-y-4 pt-20 max-w-3xl w-full">
+    <section className="space-y-4 pt-5 max-w-3xl w-full">
       <p className="font-bold fira p-1 px-3 w-fit bg-red-500/15 rounded-full text-green-500/80 text-xs sm:text-lg z-10">
         Problem Statement
       </p>
