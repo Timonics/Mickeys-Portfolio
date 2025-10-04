@@ -9,6 +9,7 @@ import MobileProjectModal from "./components/MobileProjectModal";
 const Project: React.FC = () => {
   const [activeTag, setActiveTag] = useState<string>("All");
   const [showProjectInfo, setShowProjectInfo] = useState<boolean>(false);
+  const [showAllTags, setShowAllTags] = useState<boolean>(false);
   const [selectedProjectName, setSelectedrojectName] = useState<string>("");
   const allTags: string[] = useMemo(() => {
     const tagSet: Set<string> = new Set();
@@ -98,7 +99,7 @@ const Project: React.FC = () => {
 
   return (
     <>
-      <header className="w-full space-y-5 z-50">
+      <header className="w-full space-y-5">
         <div className="flex items-center gap-4">
           <h1 className="text-5xl md:text-7xl text-black bg-white font-bold p-4 pt-3 px-2 pops w-fit">
             My
@@ -112,8 +113,8 @@ const Project: React.FC = () => {
           ideas to fully deployed production apps. Every project represents a
           new challenge i tackled and a new skill i honed.
         </p>
-        <div className="outfit mt-10 text-lg flex gap-10 flex-wrap p-4 items-center justify-center text-white/50">
-          {allTags.map((tag) => (
+        <div className="outfit mt-8 text-lg flex gap-6 flex-wrap p-4 items-center justify-center text-white/50">
+          {(showAllTags ? allTags : allTags.slice(0, 3)).map((tag) => (
             <ProjectTag
               key={tag}
               active={activeTag === tag}
@@ -122,9 +123,12 @@ const Project: React.FC = () => {
               {tag}
             </ProjectTag>
           ))}
+          <button onClick={() => setShowAllTags(!showAllTags)} className="px-2 py-1 rounded-md text-md fontbold bg-white/5 text-green-400">
+            {showAllTags ? "Collapse tags" : "View All tags"}
+          </button>
         </div>
       </header>
-      <main className="w-full sm:w-[calc(100%-50px)] md:w-[calc(100%-80px)] py-4 px-2 flex flex-col items-center gap-10 z-30">
+      <main className="w-full sm:w-[calc(100%-50px)] md:w-[calc(100%-80px)] py-4 px-2 flex flex-col items-center gap-10">
         <SectionWrapper>{filteredProjectsElements}</SectionWrapper>
       </main>
       <div className="max-w-6xl mx-auto mb-20 text-center outfit">

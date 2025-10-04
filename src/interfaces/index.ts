@@ -12,6 +12,7 @@ export interface ProjectType {
   backgroundColor?: string;
   backgroundGradient?: string;
   shadowClassName: string;
+  img?: string
   live?: string;
   repo: string;
   featured?: boolean;

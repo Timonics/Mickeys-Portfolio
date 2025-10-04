@@ -14,6 +14,14 @@ const MobileProjectModal: React.FC<Props> = ({
   setShowProjectInfo,
   mobileSelectedProject,
 }) => {
+  if (!mobileSelectedProject) {
+    return (
+      <div className="fixed min-h-screen flex items-center justify-center pops text-2xl">
+        Project Not Found!!
+      </div>
+    );
+  }
+
   // parent container animation
   const container: Variants = {
     hidden: { opacity: 0, x: "100%" }, // slide from right
@@ -36,6 +44,8 @@ const MobileProjectModal: React.FC<Props> = ({
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
+
+  const Icon = mobileSelectedProject?.icon;
 
   return (
     <div className="relative">
@@ -61,28 +71,62 @@ const MobileProjectModal: React.FC<Props> = ({
                 className="text-2xl font-bold mb-4 pops text-black"
                 variants={item}
               >
-                {mobileSelectedProject!.title}
+                {mobileSelectedProject.title}
               </motion.h2>
 
+              <motion.div
+                className="rounded-lg w-full h-[250px] mx-auto mb-4 bg-black"
+                variants={item}
+              >
+                {mobileSelectedProject.img ? (
+                  <img
+                    src={mobileSelectedProject.img}
+                    alt="Project Image"
+                    className="h-full w-full rounded-lg flex object-cover"
+                  />
+                ) : (
+                  <div
+                    className={`h-full w-full rounded-lg flex flex-wrap gap-2 items-center justify-center pops ${
+                      mobileSelectedProject.backgroundColor &&
+                      mobileSelectedProject.backgroundColor
+                    } ${
+                      mobileSelectedProject.backgroundGradient &&
+                      mobileSelectedProject.backgroundGradient
+                    } ${
+                      mobileSelectedProject?.shadowClassName
+                    } text-2xl font-bold`}
+                    style={{
+                      color: mobileSelectedProject.textColor,
+                      fontSize: "30px",
+                    }}
+                  >
+                    <Icon className="p-2 bg-black rounded-xl" size={40} />
+                    <h2>{mobileSelectedProject.title}</h2>
+                  </div>
+                )}
+              </motion.div>
+
               <motion.p className="text-gray-600 mb-4 outfit" variants={item}>
-                {mobileSelectedProject!.desc}
+                {mobileSelectedProject.desc}
               </motion.p>
 
               <motion.div
                 className="flex flex-col gap-3 outfit font-bold"
                 variants={item}
               >
-                {mobileSelectedProject?.tags.includes("Fullstack") && <button
-                  onClick={() =>
-                    window.open(mobileSelectedProject!.live, "_blank")
-                  }
-                  className="p-3 rounded-lg bg-black/50 border-[1.5px] border-white/75 text-black"
-                >
-                  View Demo
-                </button>}
+                {mobileSelectedProject.tags.includes("Fullstack") && (
+                  <button
+                    onClick={() =>
+                      window.open(mobileSelectedProject.live, "_blank")
+                    }
+                    className="p-3 rounded-lg bg-black/50 border-[1.5px] border-white/75 text-black"
+                  >
+                    View Demo
+                  </button>
+                )}
                 <button
                   onClick={() =>
-                    window.open(mobileSelectedProject!.repo, "_blank")
+                    window.open(mobileSelectedProject.repo, "_blank")
                   }
                   className="p-3 rounded-lg bg-black/50 border-[1.5px] border-white/75 text-black"
                 >
@@ -92,7 +136,7 @@ const MobileProjectModal: React.FC<Props> = ({
                   onClick={() =>
                     window.scrollTo({ behavior: "smooth", top: 0 })
                   }
-                  to={`${mobileSelectedProject!.name}/case-study`}
+                  to={`${mobileSelectedProject.name}/case-study`}
                   className="p-3 rounded-lg bg-white/20 border-[1.5px] border-white/75 text-black bg-gradient-to-r from-green-400 to-teal-400"
                 >
                   Case Study

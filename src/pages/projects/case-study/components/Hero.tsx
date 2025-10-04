@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
           className={`${proj.backgroundGradient} mx-auto flex items-center justify-center h-[290px] sm:h-[320px] w-[90vw] md:w-[70vw] lg:w-[60vw] rounded-lg ${proj.shadowClassName} ${proj.backgroundColor} shadow-none mt-4`}
         >
           <div
-            className="pops font-extrabold flex items-center gap-2"
+            className="pops font-extrabold flex flex-wrap justify-center text-center items-center gap-2"
             style={{
               color: proj.textColor,
               fontSize: "30px",
@@ -31,10 +31,9 @@ const Hero: React.FC = () => {
             {proj.title}
           </div>
         </div>
-        <div className="flex flex-col gap-4 justify-center w-full items-center outfit text-xl mt-4">
-          <p>Timeline: Jan - Mar 2025</p>
-          <div className="flex gap-4 items-center">
-            Stack:{" "}
+        <div className="flex flex-col gap-6 justify-center w-full items-center outfit text-xl mt-4">
+          <div className="flex flex-wrap justify-center gap-4 items-center">
+            Stacks used:{" "}
             <span className="flex gap-2">
               {proj.tags.map((tag, index) => (
                 <p
@@ -46,7 +45,7 @@ const Hero: React.FC = () => {
               ))}
             </span>
           </div>
-          <p>Status: Active</p>
+          <p>Status: <span className="text-green-500 bg-white/5 px-2 py-0.5 rounded-md font-bold text-sm">Active</span></p>
         </div>
       </div>
     );

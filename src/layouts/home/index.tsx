@@ -27,9 +27,7 @@ const HomeLayout: React.FC = () => {
             <Stacks />
           </SectionWrapper>
         </div>
-        <SectionWrapper>
-          <Contact />
-        </SectionWrapper>
+        <Contact />
       </div>
       <div className="w-full flex flex-col items-center">
         <SectionWrapper>

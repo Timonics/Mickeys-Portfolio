@@ -4,6 +4,7 @@ import Whispr from "./splash-screens/whispr";
 import ProjectVignette from "../../../components/vignettes/project-vignette";
 import TicketTrail from "./splash-screens/tickettrail";
 import { Link } from "react-router-dom";
+import PayHook from "./splash-screens/payhook";
 
 const Projects: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const Projects: React.FC = () => {
         <ThriftEase />
         <Whispr />
         <TicketTrail />
+        <PayHook />
       </div>
     </div>
   );

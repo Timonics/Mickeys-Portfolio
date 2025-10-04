@@ -17,6 +17,7 @@ export const PROJECTS = [
     repo: "https://github.com/Timonics/Thrift-Ease",
     backgroundGradient: "thriftease-background",
     shadowClassName: "shadow-lg shadow-green-400/30",
+    img: "img-here",
     featured: true,
     caseStudy: {
       problemStatement: {
@@ -78,6 +79,7 @@ export const PROJECTS = [
     headerColor: "from-indigo-700 via-indigo-100 to-indigo-100",
     backgroundColor: "bg-slate-800",
     shadowClassName: "shadow-lg shadow-2xl shadow-[#7741f4]/30",
+    img: "img-here",
     live: "#",
     repo: "https://github.com/Timonics/Whispr",
     caseStudy: {
@@ -190,7 +192,7 @@ export const PROJECTS = [
     textColor: "#0000E7",
     headerColor: "from-blue-600 via-blue-100 to-blue-100",
     backgroundColor: "bg-blue-500",
-    shadowClassName: "shadow-lg shadow-red-400/30",
+    shadowClassName: "shadow-lg shadow-blue-400/30",
     tags: ["NestJS", "Node.js", "Postgres"],
     desc: "A lightweight NestJS application that listens for Stripe webhook events, verifies their signatures, and processes them accordingly.",
     repo: "https://github.com/Timonics/payhook",
@@ -243,7 +245,7 @@ export const PROJECTS = [
     textColor: "#754C00",
     headerColor: "from-orange-600 via-orange-100 to-orange-100",
     backgroundColor: "bg-orange-300",
-    shadowClassName: "shadow-lg shadow-red-400/30",
+    shadowClassName: "shadow-lg shadow-orange-400/30",
     tags: ["NestJS", "BullMQ", "Prisma"],
     desc: "A secure, self-destructing secret sharing service for sensitive information.",
     repo: "https://github.com/Timonics/payhook",
@@ -298,7 +300,8 @@ export const PROJECTS = [
     textColor: "#0000FF",
     headerColor: "from-sky-600 via-sky-100 to-sky-100",
     backgroundColor: "bg-sky-300",
-    shadowClassName: "shadow-lg shadow-red-400/30",
+    shadowClassName: "shadow-lg shadow-sky-400/30",
+    img: "img-here",
     tags: ["NestJS", "TypeORM", "React", "Fullstack"],
     desc: "Band coordinating unit management system for C&S church in Nigeria.",
     repo: "https://github.com/Timonics/BCU",

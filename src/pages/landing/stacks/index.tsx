@@ -15,7 +15,9 @@ const MyStacks: React.FC = () => {
         className="bg-gray-200 h-[100px] sm:w-[160px] xl:w-[150px] xl:gap-1 rounded-lg text-black flex items-center justify-center text-lg pops shadow-md"
       >
         <Icon size={30} />
-        <p className="font-semibold min-[400px]:text-xs sm:text-sm md:text-base">{stack.name}</p>
+        <p className="font-semibold min-[400px]:text-xs sm:text-sm md:text-base">
+          {stack.name}
+        </p>
       </div>
     );
   });
@@ -69,9 +71,11 @@ const MyStacks: React.FC = () => {
             {isActive === "frontend" && (
               <div>
                 <p className="text-black/75 outfit">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam nemo enim blanditiis qui asperiores minima iusto, vero
-                  accusamus velit eum.
+                  A modern collection of frameworks and tools for speed,
+                  responsiveness, and visual polish. This stack makes it
+                  possible to craft seamless user experience that adapt across
+                  devices, ensuring performance and accessibility remain at the
+                  core.
                 </p>
                 <div className="grid min-[400px]:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
                   {frontendStacks.map((stack) => {
@@ -108,9 +112,10 @@ const MyStacks: React.FC = () => {
             {isActive === "backend" && (
               <div>
                 <p className="text-black/75 outfit">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam nemo enim blanditiis qui asperiores minima iusto, vero
-                  accusamus velit eum.
+                  A powerful ecosystem of server-side technologies built for
+                  scalability, security, and efficiency. This stack provides
+                  the foundation for clean architecture, smooth data flow, and
+                  reliable performance that can support projects of any size.
                 </p>
                 <div className="grid min-[400px]:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
                   {backendStacks.map((stack) => {

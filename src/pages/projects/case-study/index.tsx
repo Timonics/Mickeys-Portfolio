@@ -18,7 +18,11 @@ const CaseStudy: React.FC = () => {
   );
 
   if (!selected_project) {
-    return <div>hii</div>;
+    return (
+      <div className="fixed min-h-screen flex items-center justify-center pops text-2xl">
+        Project Not Found!!
+      </div>
+    );
   }
 
   const caseStudy = useMemo(() => selected_project.caseStudy, [project]);
@@ -30,8 +34,8 @@ const CaseStudy: React.FC = () => {
       <Research researchPlanning={caseStudy.researchPlanning} />
       <Implementation implementation={caseStudy.engineering} />
       <Design designUX={caseStudy.designUX} />
-      <NextSteps nextSteps={caseStudy.nextSteps}/>
-      <CTA />
+      <NextSteps nextSteps={caseStudy.nextSteps} />
+      <CTA live={selected_project.live} repo={selected_project.repo} />
     </main>
   );
 };

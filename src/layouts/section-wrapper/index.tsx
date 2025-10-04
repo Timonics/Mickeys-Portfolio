@@ -5,7 +5,7 @@ import { useRef } from "react";
 const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef(null);
   const location = window.location;
-  const isInView = useInView(ref, { amount: 0.08, once: false });
+  const isInView = useInView(ref, { amount: 0.05, once: false });
 
   const isProjectsPage = location.pathname === '/projects';
 
